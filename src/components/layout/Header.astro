@@ -5,7 +5,10 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
 
 <header>
   <nav>
-    <a href="/">{themeConfig.site.title}</a>
+    <a href="/">
+      <span>{themeConfig.site.title}</span>
+      <span> — Designer && Developer</span>
+    </a>
     <ThemeToggle />
   </nav>
 </header>
@@ -23,6 +26,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
     color: var(--text-primary);
     text-decoration: none;
     min-width: 3rem;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
   }
 </style>
