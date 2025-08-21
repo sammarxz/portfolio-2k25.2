@@ -10,15 +10,50 @@ const today = new Date()
         &copy;
         {today.getFullYear()}
       </span>
-      {themeConfig.site.author}
+      <a href="https://github.com/sammarxz" target="blank">
+        {themeConfig.site.author}
+      </a>
     </div>
-    <div class="powered-by">
-      Powered by{' '}
-      <a href="https://astro.build">Astro</a> &{' '}
-      <a href="https://github.com/the3ash/astro-chiri">Chiri</a>
+    <div class="local-time">
+      <span class="time-label">Horário local:</span>
+      <span class="time-display" id="caruaru-time">
+        Carregando...
+      </span>
+      <span class="location">Caruaru/PE, Brasil</span>
     </div>
   </div>
 </footer>
+
+<script>
+  function updateTime() {
+    const timeDisplay = document.getElementById('caruaru-time');
+    if (timeDisplay) {
+     const now = new Date();
+      
+      try {
+        const options: Intl.DateTimeFormatOptions = {
+          timeZone: 'America/Recife',
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        };
+        
+        timeDisplay.textContent = now.toLocaleTimeString('pt-BR', options);
+      } catch (error) {
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        
+        timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+    }
+  }
+
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+
 <style>
   footer {
     font-size: var(--font-size-s);
@@ -39,12 +74,33 @@ const today = new Date()
   }
 
   .copyright,
-  .powered-by {
+  .local-time {
     white-space: nowrap;
   }
 
   .copyright .date {
     opacity: 1;
+  }
+
+  .local-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .time-label {
+    opacity: 0.8;
+  }
+
+  .time-display {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    opacity: 1;
+  }
+
+  .location {
+    opacity: 0.7;
+    font-size: 0.9em;
   }
 
   footer a {
