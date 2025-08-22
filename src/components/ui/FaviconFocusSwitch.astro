@@ -1,0 +1,92 @@
+<script is:inline>
+  // Favicon focus switcher for changing emoji when tab loses focus
+  class FaviconFocusSwitch {
+    constructor() {
+      this.defaultEmoji = '✌️'
+      this.blurEmoji = '😧'
+      this.currentEmoji = this.defaultEmoji
+      
+      this.init()
+      this.setupListeners()
+    }
+
+    init() {
+      this.setFavicon(this.defaultEmoji)
+    }
+
+    setupListeners() {
+      // Listen for visibility change events
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          // Tab lost focus
+          this.setFavicon(this.blurEmoji)
+        } else {
+          // Tab gained focus
+          this.setFavicon(this.defaultEmoji)
+        }
+      })
+
+      // Fallback for older browsers
+      window.addEventListener('blur', () => {
+        this.setFavicon(this.blurEmoji)
+      })
+
+      window.addEventListener('focus', () => {
+        this.setFavicon(this.defaultEmoji)
+      })
+    }
+
+    setFavicon(emoji) {
+      if (this.currentEmoji === emoji) return
+      this.currentEmoji = emoji
+
+      // Remove existing favicon
+      const existingFavicon = document.querySelector('link[rel="icon"]') || 
+                             document.querySelector('link[rel="shortcut icon"]')
+      if (existingFavicon) {
+        existingFavicon.remove()
+      }
+
+      // Create new favicon with emoji
+      const canvas = document.createElement('canvas')
+      canvas.width = 64
+      canvas.height = 64
+      const ctx = canvas.getContext('2d')
+      
+      // Set font and draw emoji
+      ctx.font = '48px serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(emoji, 32, 32)
+      
+      // Convert to data URL and set as favicon
+      const dataURL = canvas.toDataURL('image/png')
+      
+      const link = document.createElement('link')
+      link.rel = 'icon'
+      link.type = 'image/png'
+      link.href = dataURL
+      
+      document.head.appendChild(link)
+    }
+  }
+
+  // Initialize favicon focus switcher
+  function initFaviconFocusSwitch() {
+    try {
+      new FaviconFocusSwitch()
+    } catch (error) {
+      console.warn('Failed to initialize favicon focus switcher:', error)
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaviconFocusSwitch)
+  } else {
+    initFaviconFocusSwitch()
+  }
+
+  // Re-initialize on Astro page loads
+  document.addEventListener('astro:page-load', initFaviconFocusSwitch)
+</script>
