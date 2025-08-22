@@ -6,8 +6,11 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
 <header>
   <nav>
     <a href="/">
-      <span>{themeConfig.site.title}</span>
-      <span> — Designer && Developer</span>
+      <img src="/sammarxz.jpeg" alt="Sam Marxz" class="profile-photo" />
+      <div class="title-info">
+        <span>{themeConfig.site.title}</span>
+        <span class="subtitle"> — Designer && Desenvolvedor</span>
+      </div>
     </a>
     <ThemeToggle />
   </nav>
@@ -19,13 +22,27 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
   nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
   header a {
     font-weight: var(--font-weight-bold);
     color: var(--text-primary);
     text-decoration: none;
     min-width: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .profile-photo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .title-info {
     display: flex;
     flex-direction: column;
   }

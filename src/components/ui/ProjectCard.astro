@@ -1,0 +1,94 @@
+---
+import type { Project } from '@/types'
+
+interface Props {
+  project: Project
+}
+
+const { project } = Astro.props
+---
+
+<a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card">
+  <div class="project-card-content">
+    <div class="project-image">
+      <img src={project.image} alt={`${project.title} logo`} />
+    </div>
+    <div class="project-info">
+      <h3 class="project-title">{project.title}</h3>
+      <p class="project-description">{project.description}</p>
+    </div>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    overflow: hidden;
+    transition: 
+      background 0.15s ease-out,
+      border-color 0.15s ease-out;
+  }
+
+  .project-card:hover {
+    background: color-mix(in srgb, var(--selection) 75%, transparent);
+    border-color: var(--text-tertiary);
+    
+  }
+
+  .project-card-content {
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .project-image {
+    flex-shrink: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .project-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .project-title {
+    margin: 0 0 0.25rem 0;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .project-description {
+    margin: 0;
+    font-size: var(--font-size-m);
+    color: var(--text-primary);
+    line-height: 1.5;
+    opacity: 0.65;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .project-description {
+      opacity: 1;
+      color: var(--text-primary);
+    }
+  }
+</style>

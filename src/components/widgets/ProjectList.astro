@@ -1,0 +1,28 @@
+---
+import ProjectCard from '@/components/ui/ProjectCard.astro'
+import type { ProjectListProps } from '@/types'
+
+const { projects } = Astro.props as ProjectListProps
+---
+
+<section>
+  <h2 class="section-title">Projetos pessoais:</h2>
+  <div class="projects-container">
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
+  </div>
+</section>
+<div class="placeholder"></div>
+
+<style>
+  .projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .placeholder {
+    height: 3rem;
+  }
+</style>

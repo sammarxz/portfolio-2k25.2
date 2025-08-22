@@ -90,3 +90,16 @@ export interface LinkCardMetadata {
   image: string
   imageAlt: string
 }
+
+// Project interface
+export interface Project {
+  title: string
+  description: string
+  image: string
+  url: string
+}
+
+// ProjectList component props interface
+export interface ProjectListProps {
+  projects: Project[]
+}

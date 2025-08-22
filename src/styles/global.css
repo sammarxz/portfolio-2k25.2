@@ -197,6 +197,16 @@ main {
   letter-spacing: var(--spacing-m);
 }
 
+.section-title {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-light);
+  color: var(--text-secondary);
+  opacity: 0.75;
+  flex-shrink: 0;
+  letter-spacing: .05rem;
+  text-transform: uppercase;
+}
+
 .sr-only {
   border: 0;
   padding: 0;
