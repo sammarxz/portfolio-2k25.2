@@ -1,4 +1,4 @@
-import type { ThemeConfig } from './types'
+import type { ThemeConfig, Project } from './types'
 
 export const themeConfig: ThemeConfig = {
   // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
@@ -36,3 +36,19 @@ export const themeConfig: ThemeConfig = {
     linkCard: true // Enable link card
   }
 }
+
+// PROJECTS CONFIGURATION ////////////////////////////////////////////////////////////////////////////////
+export const projects: Project[] = [
+  {
+    title: 'Puro Suco',
+    description: 'Newsletter semanal com as principais notícias para desenvolvedores e designers.',
+    image: '/puro-suco.svg',
+    url: 'https://purosu.co'
+  },
+  {
+    title: 'Bíblia 365',
+    description: 'Sistema de design escalável para produtos digitais, incluindo componentes reutilizáveis e tokens de design.',
+    image: '/biblia-365.svg',
+    url: 'https://biblia-365.com'
+  }
+]
