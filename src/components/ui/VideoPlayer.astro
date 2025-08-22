@@ -1,0 +1,75 @@
+---
+interface Props {
+  src: string
+  poster?: string
+  caption?: string
+  width?: string
+  height?: string
+}
+
+const { src, poster, caption, width = "100%", height = "auto" } = Astro.props
+---
+
+<div class="video-container">
+  <video
+    controls
+    preload="metadata"
+    poster={poster}
+    width={width}
+    height={height}
+  >
+    <source src={src} type="video/mp4" />
+    <p>Seu navegador não suporta o elemento de vídeo.</p>
+  </video>
+  {caption && <p class="video-caption">{caption}</p>}
+</div>
+
+<style>
+  .video-container {
+    margin: 1.5rem 0 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--code-bg);
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    background: var(--bg);
+  }
+
+  video:focus {
+    outline: 2px solid var(--text-tertiary);
+    outline-offset: 2px;
+  }
+
+  .video-caption {
+    margin: 0.75rem 0;
+    font-size: var(--font-size-s);
+    color: var(--text-primary);
+    opacity: 0.65;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* Custom video controls styling */
+  video::-webkit-media-controls-panel {
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-pause-button {
+    background: var(--text-primary);
+    border-radius: 50%;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .video-container {
+      margin: 1rem 0 1.5rem 0;
+    }
+  }
+</style>
