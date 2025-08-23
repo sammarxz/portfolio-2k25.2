@@ -47,7 +47,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Bíblia 365',
-    description: 'Sistema de design escalável para produtos digitais, incluindo componentes reutilizáveis e tokens de design.',
+    description: 'Um aplicativo que está sendo desenvolvido para você que quer ler e entender a bíblia em 365 dias.',
     image: '/biblia-365.svg',
     url: 'https://biblia-365.com'
   }
