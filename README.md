@@ -4,4 +4,4 @@ My personal portfolio for the second half of 2025, built with the Chiri theme fo
 
 I really enjoyed working with Astro - much more than Next.js. I'll probably build more projects with it.
 
-![Preview](public/screenshots/screenshot-dark.png)
+![Preview](/preview.png)
